@@ -130,6 +130,49 @@ Update the hex values after running `wal`. The color mapping used here:
 
 ---
 
+## Automatic pywal sync
+
+Colors can be synced automatically every time you run `wal` using a postrun hook.
+
+### The script
+
+`~/dotfiles/zen/scripts/update-zen-colors.sh` reads `~/.cache/wal/colors` and rewrites
+`userChrome.css` with the new palette:
+
+```bash
+COLORS=~/.cache/wal/colors
+
+color0=$(sed -n '1p' "$COLORS")   # background
+color4=$(sed -n '5p' "$COLORS")   # accent
+color7=$(sed -n '8p' "$COLORS")   # foreground
+```
+
+The color line numbers map directly to pywal's output order (1-indexed):
+
+| Line | Pywal color | Role |
+|---|---|---|
+| 1 | `color0` | background → `--zen-branding-dark`, `--zen-main-browser-background` |
+| 5 | `color4` | accent → `--zen-primary-color` |
+| 8 | `color7` | foreground → `--zen-branding-paper` |
+
+Run it manually at any time:
+```
+~/dotfiles/zen/scripts/update-zen-colors.sh
+```
+
+### The hook
+
+`~/.config/wal/postrun` is executed by pywal after every `wal` run. It calls the script:
+
+```bash
+#!/usr/bin/env bash
+~/dotfiles/zen/scripts/update-zen-colors.sh
+```
+
+After `wal` runs, `userChrome.css` is updated automatically. Restart Zen to apply the new colors.
+
+---
+
 ## Debugging tips
 
 - **Confirm the file loads**: replace all CSS with `#navigator-toolbox { background: red !important; }` and restart.
