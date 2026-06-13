@@ -1,0 +1,6 @@
+*
+!.gitignore
+!user.js
+!chrome/
+!chrome/userChrome.css
+!ZEN_THEMING.md
