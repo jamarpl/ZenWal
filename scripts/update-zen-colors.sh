@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Reads pywal colors and updates Zen's userChrome.css
 
-COLORS=~/.cache/wal/colors
-CHROME="/home/jamar/.config/zen/mfbp1jn9.Default (release)-2/chrome/userChrome.css"
+COLORS="$HOME/.cache/wal/colors"
+PROFILE=$(awk -F= '/^Default=/{print $2}' "$HOME/.config/zen/profiles.ini" | head -1)
+CHROME="$HOME/.config/zen/$PROFILE/chrome/userChrome.css"
 
 # Read colors by line
 color0=$(sed -n '1p' "$COLORS")

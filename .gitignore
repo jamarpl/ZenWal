@@ -4,5 +4,7 @@
 !chrome/
 !chrome/userChrome.css
 !ZEN_THEMING.md
+!README.md
+!REFERENCE.md
 !scripts/
 !scripts/update-zen-colors.sh
