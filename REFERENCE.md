@@ -27,7 +27,7 @@ These are the root variables you configure in `:root`. Setting these cascades th
 
 ## CSS variables — computed (read-only)
 
-These are derived automatically. Don't set them — they'll be overwritten.
+Do not set these. They are derived automatically.
 
 | Variable | How it's computed |
 |---|---|
@@ -43,7 +43,7 @@ These are derived automatically. Don't set them — they'll be overwritten.
 
 ## Element selectors
 
-These elements require direct `background` overrides — the variable alone isn't enough because Zen's JS engine or platform media queries override the variable at runtime.
+These are the known elements that require direct `background` overrides, as Zen's JS engine or platform media queries override the variable at runtime.
 
 | Selector | What it is | Notes |
 |---|---|---|
