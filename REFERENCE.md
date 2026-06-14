@@ -49,7 +49,7 @@ These are the known elements that require direct `background` overrides, as Zen'
 |---|---|---|
 | `#navigator-toolbox` | Entire left sidebar shell | Uses `--zen-navigator-toolbox-background` |
 | `#nav-bar` | Navigation toolbar (URL bar row) | — |
-| `#zen-main-app-wrapper` | Wrapper around the top toolbar area | Set `background` directly — overridden by platform media queries |
+| `#zen-main-app-wrapper` | Wrapper around the top toolbar area | Set `background` directly. Gets overridden somewhere |
 | `.zen-browser-generic-background` | Background layer behind sidebar and content | — |
 | `.zen-browser-generic-background::after` | Where `--zen-main-browser-background` is painted | Set directly to override JS inline styles |
 | `.zen-browser-generic-background::before` | Previous background (used during transitions) | Set directly alongside `::after` |
