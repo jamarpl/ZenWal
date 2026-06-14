@@ -1,4 +1,10 @@
-# Zen Browser CSS Theming
+# ZenWal: Themeing Zen Browser with PyWal automatically
+
+ZenWal is a framework/guide to setting up Zen & PyWal to work together automatically, giving you sleek browser colors to match your theme.
+
+It uses a postrun script for pywal that reads the current colors and writes them to your userChrome. 
+
+If you like it, please star this repo & discuss any changes or development you want to see (Like creating an official ZenMod, for example!)
 
 ## Repo structure
 
@@ -27,7 +33,7 @@ Look for the `[InstallXXXXXXXX]` block — its `Default=` line names the active 
 
 
 ```ini
-// Example
+# Example
 
 [Install15B76BAA26BA15E7]
 Default=mfbp1jn9.Default (release)-2
@@ -53,6 +59,20 @@ grep legacyUserProfile ~/.config/zen/<profile>/prefs.js
 
 Copy `chrome/userChrome.css` from this repo into `~/.config/zen/<profile>/chrome/`. The `chrome/` directory may need to be created if it doesn't exist.
 
+
+### 4. Place script in `~/.config/wal`
+
+Create `~/.config/wal/postrun` (or add to it if it exists) to call the script after every `wal` run:
+
+```bash
+#!/usr/bin/env bash
+./update-zen-colors.sh
+
+# You can store the script anywhere you want. I suggest keeping it with your dotfiles, or including it in your .config/wal directory.
+```
+
+Make sure it's executable: `chmod +x ~/.config/wal/postrun`.
+
 ---
 
 ## How theming works
@@ -69,27 +89,7 @@ Colors are synced automatically every time you run `wal` via a postrun hook.
 
 ### The script
 
-`scripts/update-zen-colors.sh` reads `~/.cache/wal/colors` and rewrites `userChrome.css` in your active Zen profile. It detects your active profile automatically from `profiles.ini`. Run it manually at any time:
-
-```
-~/dotfiles/zen/scripts/update-zen-colors.sh
-```
-
-Restart Zen after running it to apply the new colors.
-
-### Setting the script as a Pywal postrun
-
-Create `~/.config/wal/postrun` (or add to it if it exists) to call the script after every `wal` run:
-
-```bash
-#!/usr/bin/env bash
-~/dotfiles/zen/scripts/update-zen-colors.sh
-
-# You can store the script anywhere you want. I suggest keeping it with your dotfiles, or including it in your .config/wal directory.
-```
-
-
-Make sure it's executable: `chmod +x ~/.config/wal/postrun`.
+`scripts/update-zen-colors.sh` reads `~/.cache/wal/colors` and rewrites `userChrome.css` in your active Zen profile. It detects your active profile automatically from `profiles.ini` Restart Zen after running it to apply the new colors.
 
 ### Pywal color mapping
 
